@@ -75,7 +75,7 @@ const education = [
 
 export default function About() {
   return (
-    <div id="about" className="w-full max-w-6xl mx-auto mb-24">
+    <div id="about" className="w-full max-w-6xl mx-auto pt-12 mb-24">
       <CardContainer containerClassName="p-0 w-full h-auto min-h-0" className="rounded-2xl w-full h-auto min-h-0">
         <CardBody className="rounded-2xl w-full h-auto min-h-0">
           <div className="bg-gray-800 rounded-t-2xl px-4 py-2 flex items-center gap-2">

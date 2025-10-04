@@ -12,34 +12,40 @@ export default function FloatingNavbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "about", "skills", "projects", "contact"]
-      const scrollPosition = window.scrollY + 100
+      const sectionIds = ["home", "about", "projects", "contact"]
 
       // Check if scrolled
       setIsScrolled(window.scrollY > 50)
 
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
+      // Use viewport-based threshold for more reliable active detection
+      const threshold = Math.min(window.innerHeight * 0.33, 200)
 
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
-          }
+      for (const id of sectionIds) {
+        const element = document.getElementById(id)
+        if (!element) continue
+
+        const rect = element.getBoundingClientRect()
+        const isInView = rect.top <= threshold && rect.bottom > threshold
+
+        if (isInView) {
+          setActiveSection(id)
+          break
         }
       }
     }
 
     window.addEventListener("scroll", handleScroll)
+    // Run once on mount in case we land mid-page
+    handleScroll()
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId)
     if (element) {
-      element.scrollIntoView({ behavior: "smooth" })
+      const navbarOffset = 80
+      const y = element.getBoundingClientRect().top + window.scrollY - navbarOffset
+      window.scrollTo({ top: y, behavior: "smooth" })
     }
     setIsOpen(false)
   }
