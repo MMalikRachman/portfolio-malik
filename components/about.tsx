@@ -55,12 +55,12 @@ const experience = [
   {
     title: "QA Engineer at Paper.ID",
     year: "May 2025 - Now",
-    type: "Remote - Intern",
+    type: "Intern",
   },
   {
     title: "Application Quality at Kalbe Farma",
     year: "Feb 2024 - Feb 2025",
-    type: "On site - Intern",
+    type: "Intern",
   },
 ]
 
