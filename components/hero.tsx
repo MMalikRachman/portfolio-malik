@@ -65,10 +65,10 @@ export default function Hero() {
           )}
         </h1>
         <p className="text-lg text-gray-700 dark:text-blue-200 mb-4 text-center">
-          Final-year Information Systems student passionate about
-          <Highlight> web development</Highlight>,
-          <Highlight> system analysis</Highlight>, and
-          <Highlight> software testing</Highlight>.
+          Enthusiastic Information Systems student with a passion for
+          <Highlight> Software Testing</Highlight>,
+          <Highlight> System Analysis</Highlight>, and
+          <Highlight> Project Management</Highlight>
         </p>
         <div className="flex gap-4 mt-4">
           <Button onClick={scrollToProjects} className="px-6 py-2 text-base font-semibold rounded-full">
