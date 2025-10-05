@@ -4,7 +4,6 @@ import { ExternalLink, Smartphone, Globe, Code, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LinkPreview } from "@/components/ui/link-preview"
 import { HoverEffect } from "@/components/ui/card-hover-effect"
-import ExpandableUICards from "@/components/ui/expandable-ui-cards"
 import React, { useState, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Tabs } from "@/components/ui/tabs"
@@ -19,7 +18,6 @@ interface UICard {
 }
 
 export default function Projects() {
-  const [activeUIProject, setActiveUIProject] = useState<UICard | null>(null)
 
   const webProjects = [
     {
@@ -184,6 +182,20 @@ export default function Projects() {
   ]
 
   const otherProjects = [
+    {
+      title: "Simple-ai-discord-bot",
+      description:
+        "A simple Discord bot with AI Q&A (Gemini), movie/series watchlist (OMDb), and scheduled reminders. Built on discord.js v14.",
+      type: "Discord Bot",
+      technologies: ["Node.js", "discord.js", "Gemini", "OMDb"],
+      color: "blue",
+      features: [
+        "AI Q&A: /ask powered by Google Gemini, optional web grounding.",
+        "Watchlist: /addwatchlist, /watchlist, /completedwatchlist using OMDb.",
+        "Reminders: /addreminder to DM a user or post in a channel; background scheduler.",
+        "Utilities: /ping, /echo, /whois."
+      ],
+    },
     {
       title: "JavaFX Calculator",
       description:

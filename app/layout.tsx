@@ -21,10 +21,10 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Muhammad Malik Rachman - Portfolio",
     description:
-      "Final-year Information Systems student passionate about web development, system analysis, and software testing.",
+      "Final-year Information Systems student passionate about software testing, system analysis, and project management.",
     type: "website",
   },
-    generator: 'v0.dev'
+    generator: 'Next JS'
 }
 
 export default function RootLayout({
