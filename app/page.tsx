@@ -10,7 +10,7 @@ export default function Home() {
     <main className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
       <FloatingNavbar />
       <Hero />
-      <div className="max-w-4xl mx-auto relative">
+      <div className="max-w-4xl mx-auto relative ">
         <FeaturedProjectBanner />
       </div>
       <div className="max-w-4xl mx-auto relative">
