@@ -66,7 +66,7 @@ const experience = [
 
 const education = [
   {
-    degree: " Student Information Systems",
+    degree: " Bachelor of Information Systems",
     school: "Bina Nusantara University",
     year: "2021 - 2025",
     gpa: "GPA: 3.67 / 4.00",
@@ -233,25 +233,33 @@ export default function About() {
                   }
                   description={
                     <div>
-                      <div className="text-gray-600 dark:text-gray-300 mb-2">During my internship at PT Kalbe Farma Tbk, I completed <b className="text-gray-900 dark:text-white">five major projects</b> and developed comprehensive skills in software quality assurance.</div>
-                      <div className="flex gap-8 mb-2">
-                        <div className="flex flex-col items-center">
-                          <span className="text-xl font-bold text-blue-600 dark:text-blue-400">100+</span>
-                          <span className="text-gray-600 dark:text-gray-300 text-xs">Test Scenarios</span>
-                        </div>
-                        <div className="flex flex-col items-center">
-                          <span className="text-xl font-bold text-purple-600 dark:text-purple-400">50+</span>
-                          <span className="text-gray-600 dark:text-gray-300 text-xs">Issues Found</span>
-                        </div>
+                      <div className="text-gray-600 dark:text-gray-300 mb-2">
+                        Designed test plans, created test cases, and performed manual testing for new features and bug fixes within an Agile environment.
                       </div>
-                      <ul className="list-disc ml-6 text-gray-700 dark:text-gray-200 space-y-1 text-sm">
-                        <li>Performed manual and automated testing using Katalon, Playwright, and Cypress</li>
-                        <li>Conducted API testing with Postman and load testing with K6 & JMeter</li>
-                        <li>Collaborated with cross-functional teams to enhance user experience</li>
-                        <li>Analyzed system flows through FSD documents and UML diagrams</li>
+                      <ul className="list-disc ml-6 text-gray-700 dark:text-gray-200 space-y-1 text-sm mb-2">
+                        <li className="mb-1">
+                          <span className="font-medium text-gray-900 dark:text-white">Web Testing:</span>
+                          <ul className="list-disc ml-6 mt-1">
+                            <li>
+                              Developed automated test scripts using <b className="text-blue-600 dark:text-blue-400">Cypress</b> and <b className="text-green-600 dark:text-green-400">Cucumber (Gherkin)</b> for web applications.
+                            </li>
+                          </ul>
+                        </li>
+                        <li className="mb-1">
+                          <span className="font-medium text-gray-900 dark:text-white">Mobile Testing:</span>
+                          <ul className="list-disc ml-6 mt-1">
+                            <li>
+                              Created automated tests utilizing <b className="text-purple-600 dark:text-purple-400">Appium</b> for <b className="text-orange-500 dark:text-orange-400">Flutter</b> mobile apps.
+                            </li>
+                          </ul>
+                        </li>
+                        <li>
+                          Collaborated actively with Product Managers and Developers in all Agile ceremonies (planning, grooming, stand-ups) to ensure product quality.
+                        </li>
                       </ul>
                     </div>
                   }
+              
                 />
               </BentoGrid>
             </div>
