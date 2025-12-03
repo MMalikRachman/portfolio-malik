@@ -2,6 +2,7 @@
 
 import { Mail, Instagram, Linkedin, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { trackButtonClick, trackSocialClick } from "@/lib/analytics"
 
 export default function Contact() {
   const contactInfo = [
@@ -75,6 +76,7 @@ export default function Contact() {
                 href={contact.href}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackSocialClick(contact.label.toLowerCase(), 'card_click')}
                 className={`bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg border border-gray-100 dark:border-gray-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 ${colors.hover} group`}
               >
                 <div className="text-center">
@@ -103,7 +105,13 @@ export default function Contact() {
             <Button
               size="lg"
               className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-3 rounded-full text-lg font-medium shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={() => window.open("mailto:m.malik.rachman@outlook.com", "_blank")}
+              onClick={() => {
+                trackButtonClick('send_email', {
+                  location: 'contact_section',
+                  email: 'm.malik.rachman@outlook.com'
+                })
+                window.open("mailto:m.malik.rachman@outlook.com", "_blank")
+              }}
             >
               <Mail className="mr-2 h-5 w-5" />
               Send Email
@@ -113,7 +121,13 @@ export default function Contact() {
               variant="outline"
               size="lg"
               className="border-2 border-gray-300 dark:border-gray-600 hover:border-blue-600 text-gray-700 dark:text-gray-300 hover:text-blue-600 px-8 py-3 rounded-full text-lg font-medium transition-all duration-300 bg-transparent dark:bg-transparent"
-              onClick={() => window.open("https://linkedin.com/in/malik-rachman", "_blank")}
+              onClick={() => {
+                trackButtonClick('connect_linkedin', {
+                  location: 'contact_section',
+                  profile: 'malik-rachman'
+                })
+                window.open("https://linkedin.com/in/malik-rachman", "_blank")
+              }}
             >
               <Linkedin className="mr-2 h-5 w-5" />
               Connect on LinkedIn
