@@ -53,12 +53,12 @@ const skillGroups = [
 
 const experience = [
   {
-    title: "QA Engineer at Paper.ID",
-    year: "May 2025 - Now",
+    title: "QA Engineer @Paper.ID",
+    year: "May 2025 - Nov 2025",
     type: "Intern",
   },
   {
-    title: "Application Quality at Kalbe Farma",
+    title: "Application Quality @Kalbe Farma",
     year: "Feb 2024 - Feb 2025",
     type: "Intern",
   },
