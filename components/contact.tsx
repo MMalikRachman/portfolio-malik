@@ -4,31 +4,32 @@ import { Mail, Instagram, Linkedin, MapPin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { trackButtonClick, trackSocialClick } from "@/lib/analytics"
 
-export default function Contact() {
-  const contactInfo = [
-    {
-      icon: Mail,
-      label: "Email",
-      value: "m.malik.rachman@outlook.com",
-      href: "mailto:m.malik.rachman@outlook.com",
-      color: "blue",
-    },
-    {
-      icon: Instagram,
-      label: "Instagram",
-      value: "@m.malik.rachman",
-      href: "https://instagram.com/m.malik.rachman",
-      color: "purple",
-    },
-    {
-      icon: Linkedin,
-      label: "LinkedIn",
-      value: "Malik Rachman",
-      href: "https://linkedin.com/in/malik-rachman",
-      color: "teal",
-    },
-  ]
+// Hoist contactInfo data outside component
+const contactInfo = [
+  {
+    icon: Mail,
+    label: "Email",
+    value: "m.malik.rachman@outlook.com",
+    href: "mailto:m.malik.rachman@outlook.com",
+    color: "blue",
+  },
+  {
+    icon: Instagram,
+    label: "Instagram",
+    value: "@m.malik.rachman",
+    href: "https://instagram.com/m.malik.rachman",
+    color: "purple",
+  },
+  {
+    icon: Linkedin,
+    label: "LinkedIn",
+    value: "Malik Rachman",
+    href: "https://linkedin.com/in/malik-rachman",
+    color: "teal",
+  },
+]
 
+export default function Contact() {
   const getColorClasses = (color: string) => {
     const colorMap = {
       blue: {
@@ -97,7 +98,7 @@ export default function Contact() {
           <div className="mb-6">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">Let's Work Together</h3>
             <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            I'm always excited to connect and discuss about exciting project or just want to say hi, feel free to reach out!.
+              I'm always excited to connect and discuss about exciting project or just want to say hi, feel free to reach out!.
             </p>
           </div>
 

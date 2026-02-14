@@ -4,7 +4,7 @@ import { ExternalLink, Smartphone, Globe, Code, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { LinkPreview } from "@/components/ui/link-preview"
 import { HoverEffect } from "@/components/ui/card-hover-effect"
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Tabs } from "@/components/ui/tabs"
 
@@ -17,210 +17,222 @@ interface UICard {
   imageSrc: string;
 }
 
+// Hoist webProjects data outside component
+const webProjects = [
+  {
+    title: "KlinikKasih",
+    description:
+      "A comprehensive clinic platform where users can explore health articles and purchase clinic products. Features include article browsing, product catalog, and e-commerce functionality.",
+    type: "Web Platform",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    link: "https://mmalikrachman.github.io/webklinikkasih/index.html",
+  },
+  {
+    title: "PusBaKas",
+    description:
+      "A discount tracking website that displays current product discounts with a comprehensive table showing all discounted products from the market.",
+    type: "Web Application",
+    technologies: ["Web Development", "Database"],
+    link: "https://mmalikrachman.github.io/webjualbelibarang/index.html",
+  },
+  {
+    title: "Ticks",
+    description:
+      "A concert ticket purchasing platform where users can buy concert tickets, merchandise, and other event-related products.",
+    type: "E-commerce Web",
+    technologies: ["Web Development", "Payment Integration"],
+    link: "https://mmalikrachman.github.io/webkonser/",
+  },
+  {
+    title: "E-Pasar",
+    description:
+      "Built using Wix Web Builder, this platform serves as a marketplace for buying and selling raw foods such as vegetables and meats.",
+    type: "Marketplace",
+    technologies: ["Wix", "E-commerce"],
+    link: "https://malikrachman1403.wixsite.com/e-pasar",
+  },
+]
+
+// Hoist uiProjects data outside component
+const uiProjects = [
+  {
+    title: "KerJo Mobile App",
+    description:
+      "A mobile app for job searching that allows users to find both offline and remote jobs, apply for positions, and enhance skills through course registration.",
+    type: "Mobile UI",
+    icon: Smartphone,
+    imageSrc: "/kerjo-mobile.png",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          The KerJo Mobile App is a comprehensive job search platform designed to connect job seekers with employment opportunities. The app features an intuitive user interface that makes job hunting seamless and efficient.
+        </p>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">Key Features:</h4>
+          <ul className="list-disc list-inside space-y-1 text-sm">
+            <li>Advanced job search with filters</li>
+            <li>One-click job application</li>
+            <li>Skill enhancement courses</li>
+            <li>Real-time job notifications</li>
+            <li>Resume builder and management</li>
+          </ul>
+        </div>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Approach:</h4>
+          <p className="text-sm">
+            The design focuses on user experience with clean navigation, intuitive icons, and a color scheme that promotes trust and professionalism. The mobile-first approach ensures optimal performance across all devices.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Ragunan Zoo Redesign",
+    description:
+      "Redesigned the Ragunan Zoo website with the aim of improving user experience for visitors and customers.",
+    type: "UI Redesign",
+    icon: Palette,
+    imageSrc: "/ragunan.png",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          The Ragunan Zoo website redesign project focused on creating a more engaging and informative experience for visitors. The new design emphasizes accessibility and user-friendly navigation.
+        </p>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">Redesign Goals:</h4>
+          <ul className="list-disc list-inside space-y-1 text-sm">
+            <li>Improve visitor information accessibility</li>
+            <li>Enhance ticket booking experience</li>
+            <li>Showcase animal exhibits effectively</li>
+            <li>Optimize for mobile devices</li>
+            <li>Increase visitor engagement</li>
+          </ul>
+        </div>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Solutions:</h4>
+          <p className="text-sm">
+            Implemented a modern, responsive design with clear call-to-actions, improved typography, and intuitive navigation. The color palette reflects the natural environment while maintaining excellent readability.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Raw Food E-commerce",
+    description:
+      "UI design for a raw food e-commerce platform where users can buy and sell raw foods such as meat, vegetables, and fruits.",
+    type: "E-commerce UI",
+    icon: Globe,
+    imageSrc: "/epasar.png",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          The Raw Food E-commerce platform UI design creates a seamless shopping experience for fresh produce and raw food products. The design emphasizes product quality and freshness through visual elements.
+        </p>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Features:</h4>
+          <ul className="list-disc list-inside space-y-1 text-sm">
+            <li>High-quality product imagery</li>
+            <li>Easy-to-use shopping cart</li>
+            <li>Secure payment integration</li>
+            <li>Seller dashboard interface</li>
+            <li>Real-time inventory tracking</li>
+          </ul>
+        </div>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">User Experience:</h4>
+          <p className="text-sm">
+            The interface prioritizes ease of use with clear product categories, detailed product information, and streamlined checkout process. The design builds trust through transparency and quality assurance features.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "Diet Mobile App",
+    description:
+      "UI design for a diet mobile app that allows users to record meals, view nutritional information, and subscribe to catering services.",
+    type: "Mobile UI",
+    icon: Smartphone,
+    imageSrc: "/diet-mobile.png",
+    content: () => (
+      <div className="space-y-4">
+        <p>
+          The Diet Mobile App UI design focuses on helping users maintain healthy eating habits through intuitive meal tracking and nutritional guidance. The design promotes motivation and consistency in dietary goals.
+        </p>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">Core Features:</h4>
+          <ul className="list-disc list-inside space-y-1 text-sm">
+            <li>Meal logging and tracking</li>
+            <li>Nutritional information display</li>
+            <li>Personalized diet plans</li>
+            <li>Catering service integration</li>
+            <li>Progress visualization</li>
+          </ul>
+        </div>
+        <div className="space-y-2">
+          <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Philosophy:</h4>
+          <p className="text-sm">
+            The app uses a clean, motivational design with progress indicators, achievement badges, and easy-to-understand nutritional data. The color scheme promotes health and wellness while maintaining excellent usability.
+          </p>
+        </div>
+      </div>
+    ),
+  },
+]
+
+// Hoist otherProjects data outside component
+const otherProjects = [
+  {
+    title: "Simple-ai-discord-bot",
+    description:
+      "A simple Discord bot with AI Q&A (Gemini), movie/series watchlist (OMDb), and scheduled reminders. Built on discord.js v14.",
+    type: "Discord Bot",
+    technologies: ["Node.js", "discord.js", "Gemini", "OMDb"],
+    color: "blue",
+    features: [
+      "AI Q&A: /ask powered by Google Gemini, optional web grounding.",
+      "Watchlist: /addwatchlist, /watchlist, /completedwatchlist using OMDb.",
+      "Reminders: /addreminder to DM a user or post in a channel; background scheduler.",
+      "Utilities: /ping, /echo, /whois."
+    ],
+  },
+  {
+    title: "JavaFX Calculator",
+    description:
+      "A simple calculator application built with JavaFX, featuring a clean user interface and basic mathematical operations.",
+    type: "Desktop Application",
+    technologies: ["Java", "JavaFX"],
+    color: "blue",
+  },
+  {
+    title: "Concert Ticket App",
+    description:
+      "A JavaFX application for buying concert tickets connected to SQL database. Features user registration, login system, ticket purchasing for users, and ticket management for admins.",
+    type: "Desktop Application",
+    technologies: ["Java", "JavaFX", "SQL"],
+    color: "purple",
+  },
+  {
+    title: "Systems Analysis with UML",
+    description:
+      "Comprehensive system analysis project for a clothes rental application, analyzing objects, processes, and user workflows from registration to product delivery.",
+    type: "System Analysis",
+    technologies: ["UML", "System Design", "Visual Paradigm"],
+    color: "teal",
+  },
+]
+
+interface UICard {
+  title: string;
+  description: string;
+  type: string;
+  icon: any;
+  content: () => React.ReactNode;
+  imageSrc: string;
+}
+
 export default function Projects() {
-
-  const webProjects = [
-    {
-      title: "KlinikKasih",
-      description:
-        "A comprehensive clinic platform where users can explore health articles and purchase clinic products. Features include article browsing, product catalog, and e-commerce functionality.",
-      type: "Web Platform",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      link: "https://mmalikrachman.github.io/webklinikkasih/index.html",
-    },
-    {
-      title: "PusBaKas",
-      description:
-        "A discount tracking website that displays current product discounts with a comprehensive table showing all discounted products from the market.",
-      type: "Web Application",
-      technologies: ["Web Development", "Database"],
-      link: "https://mmalikrachman.github.io/webjualbelibarang/index.html",
-    },
-    {
-      title: "Ticks",
-      description:
-        "A concert ticket purchasing platform where users can buy concert tickets, merchandise, and other event-related products.",
-      type: "E-commerce Web",
-      technologies: ["Web Development", "Payment Integration"],
-      link: "https://mmalikrachman.github.io/webkonser/",
-    },
-    {
-      title: "E-Pasar",
-      description:
-        "Built using Wix Web Builder, this platform serves as a marketplace for buying and selling raw foods such as vegetables and meats.",
-      type: "Marketplace",
-      technologies: ["Wix", "E-commerce"],
-      link: "https://malikrachman1403.wixsite.com/e-pasar",
-    },
-  ]
-
-  const uiProjects = [
-    {
-      title: "KerJo Mobile App",
-      description:
-        "A mobile app for job searching that allows users to find both offline and remote jobs, apply for positions, and enhance skills through course registration.",
-      type: "Mobile UI",
-      icon: Smartphone,
-      imageSrc: "/kerjo-mobile.png",
-      content: () => (
-        <div className="space-y-4">
-          <p>
-            The KerJo Mobile App is a comprehensive job search platform designed to connect job seekers with employment opportunities. The app features an intuitive user interface that makes job hunting seamless and efficient.
-          </p>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">Key Features:</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm">
-              <li>Advanced job search with filters</li>
-              <li>One-click job application</li>
-              <li>Skill enhancement courses</li>
-              <li>Real-time job notifications</li>
-              <li>Resume builder and management</li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Approach:</h4>
-            <p className="text-sm">
-              The design focuses on user experience with clean navigation, intuitive icons, and a color scheme that promotes trust and professionalism. The mobile-first approach ensures optimal performance across all devices.
-            </p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Ragunan Zoo Redesign",
-      description:
-        "Redesigned the Ragunan Zoo website with the aim of improving user experience for visitors and customers.",
-      type: "UI Redesign",
-      icon: Palette,
-      imageSrc: "/ragunan.png",
-      content: () => (
-        <div className="space-y-4">
-          <p>
-            The Ragunan Zoo website redesign project focused on creating a more engaging and informative experience for visitors. The new design emphasizes accessibility and user-friendly navigation.
-          </p>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">Redesign Goals:</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm">
-              <li>Improve visitor information accessibility</li>
-              <li>Enhance ticket booking experience</li>
-              <li>Showcase animal exhibits effectively</li>
-              <li>Optimize for mobile devices</li>
-              <li>Increase visitor engagement</li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Solutions:</h4>
-            <p className="text-sm">
-              Implemented a modern, responsive design with clear call-to-actions, improved typography, and intuitive navigation. The color palette reflects the natural environment while maintaining excellent readability.
-            </p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Raw Food E-commerce",
-      description:
-        "UI design for a raw food e-commerce platform where users can buy and sell raw foods such as meat, vegetables, and fruits.",
-      type: "E-commerce UI",
-      icon: Globe,
-      imageSrc: "/epasar.png",
-      content: () => (
-        <div className="space-y-4">
-          <p>
-            The Raw Food E-commerce platform UI design creates a seamless shopping experience for fresh produce and raw food products. The design emphasizes product quality and freshness through visual elements.
-          </p>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Features:</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm">
-              <li>High-quality product imagery</li>
-              <li>Easy-to-use shopping cart</li>
-              <li>Secure payment integration</li>
-              <li>Seller dashboard interface</li>
-              <li>Real-time inventory tracking</li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">User Experience:</h4>
-            <p className="text-sm">
-              The interface prioritizes ease of use with clear product categories, detailed product information, and streamlined checkout process. The design builds trust through transparency and quality assurance features.
-            </p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: "Diet Mobile App",
-      description:
-        "UI design for a diet mobile app that allows users to record meals, view nutritional information, and subscribe to catering services.",
-      type: "Mobile UI",
-      icon: Smartphone,
-      imageSrc: "/diet-mobile.png",
-      content: () => (
-        <div className="space-y-4">
-          <p>
-            The Diet Mobile App UI design focuses on helping users maintain healthy eating habits through intuitive meal tracking and nutritional guidance. The design promotes motivation and consistency in dietary goals.
-          </p>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">Core Features:</h4>
-            <ul className="list-disc list-inside space-y-1 text-sm">
-              <li>Meal logging and tracking</li>
-              <li>Nutritional information display</li>
-              <li>Personalized diet plans</li>
-              <li>Catering service integration</li>
-              <li>Progress visualization</li>
-            </ul>
-          </div>
-          <div className="space-y-2">
-            <h4 className="font-semibold text-purple-600 dark:text-purple-400">Design Philosophy:</h4>
-            <p className="text-sm">
-              The app uses a clean, motivational design with progress indicators, achievement badges, and easy-to-understand nutritional data. The color scheme promotes health and wellness while maintaining excellent usability.
-            </p>
-          </div>
-        </div>
-      ),
-    },
-  ]
-
-  const otherProjects = [
-    {
-      title: "Simple-ai-discord-bot",
-      description:
-        "A simple Discord bot with AI Q&A (Gemini), movie/series watchlist (OMDb), and scheduled reminders. Built on discord.js v14.",
-      type: "Discord Bot",
-      technologies: ["Node.js", "discord.js", "Gemini", "OMDb"],
-      color: "blue",
-      features: [
-        "AI Q&A: /ask powered by Google Gemini, optional web grounding.",
-        "Watchlist: /addwatchlist, /watchlist, /completedwatchlist using OMDb.",
-        "Reminders: /addreminder to DM a user or post in a channel; background scheduler.",
-        "Utilities: /ping, /echo, /whois."
-      ],
-    },
-    {
-      title: "JavaFX Calculator",
-      description:
-        "A simple calculator application built with JavaFX, featuring a clean user interface and basic mathematical operations.",
-      type: "Desktop Application",
-      technologies: ["Java", "JavaFX"],
-      color: "blue",
-    },
-    {
-      title: "Concert Ticket App",
-      description:
-        "A JavaFX application for buying concert tickets connected to SQL database. Features user registration, login system, ticket purchasing for users, and ticket management for admins.",
-      type: "Desktop Application",
-      technologies: ["Java", "JavaFX", "SQL"],
-      color: "purple",
-    },
-    {
-      title: "Systems Analysis with UML",
-      description:
-        "Comprehensive system analysis project for a clothes rental application, analyzing objects, processes, and user workflows from registration to product delivery.",
-      type: "System Analysis",
-      technologies: ["UML", "System Design", "Visual Paradigm"],
-      color: "teal",
-    },
-  ]
 
   const getColorClasses = (color: string) => {
     const colorMap = {
@@ -308,25 +320,31 @@ export default function Projects() {
     )
   }
 
-  // Convert webProjects to the format expected by HoverEffect
-  const webProjectsForHover = webProjects.map((project) => ({
-    title: project.title,
-    description: project.description,
-    link: project.link,
-    technologies: project.technologies,
-    type: project.type,
-    // No imageSrc for web projects
-  }))
+  // Convert webProjects to the format expected by HoverEffect (memoized)
+  const webProjectsForHover = useMemo(() =>
+    webProjects.map((project) => ({
+      title: project.title,
+      description: project.description,
+      link: project.link,
+      technologies: project.technologies,
+      type: project.type,
+      // No imageSrc for web projects
+    })),
+    [webProjects]
+  )
 
-  // Convert uiProjects to the format expected by HoverEffect
-  const uiProjectsForHover = uiProjects.map((project, idx) => ({
-    title: project.title,
-    description: project.description,
-    link: `uiux-${idx}`, // Use a unique key for each project
-    technologies: [project.type],
-    type: project.type,
-    imageSrc: project.imageSrc,
-  }))
+  // Convert uiProjects to the format expected by HoverEffect (memoized)
+  const uiProjectsForHover = useMemo(() =>
+    uiProjects.map((project, idx) => ({
+      title: project.title,
+      description: project.description,
+      link: `uiux-${idx}`, // Use a unique key for each project
+      technologies: [project.type],
+      type: project.type,
+      imageSrc: project.imageSrc,
+    })),
+    [uiProjects]
+  )
 
   return (
     <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8 mb-24 relative z-10">

@@ -7,50 +7,45 @@ import { FaJava } from "react-icons/fa"
 import { BsMicrosoft } from "react-icons/bs"
 import { MdOutlineSmartToy } from "react-icons/md"
 import { TbTestPipe } from "react-icons/tb"
+import {
+  CircleStackIcon,
+  LinkIcon,
+  ClipboardDocumentCheckIcon,
+  UserGroupIcon,
+  ChatBubbleLeftIcon,
+  RectangleGroupIcon,
+  SparklesIcon,
+} from '@heroicons/react/24/outline'
 import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid"
 import { CardContainer, CardBody } from "@/components/ui/3d-card"
 
-const skillIconMap: Record<string, React.ReactNode> = {
-  "JavaScript": <SiJavascript className="text-yellow-500" />,
-  "Python": <SiPython className="text-blue-500" />,
-  "Java": <FaJava className="text-red-500" />,
-  "Microsoft Office": <BsMicrosoft className="text-green-600" />,
-  "Visual Paradigm (UML)": <SiVsco className="text-violet-500" />,
-  "Postman": <SiPostman className="text-orange-500" />,
-  "SQL": <span className="text-blue-700 dark:text-blue-400">🗄️</span>,
-  "API Testing": <span className="text-pink-500">🔗</span>,
-  "Manual Testing": <span className="text-purple-500">📝</span>,
-  "Automation Testing": <MdOutlineSmartToy className="text-amber-500" />,
-  "Katalon": <TbTestPipe className="text-green-500" />,
-  "Cypress": <SiCypress className="text-green-700 dark:text-green-400" />,
-  "Playwright": <span className="text-purple-700 dark:text-purple-400">🎭</span>,
-  "Teamwork/Collaboration": <span className="text-green-500">🤝</span>,
-  "Effective Communication": <span className="text-blue-400">💬</span>,
-}
-
-const skillGroups = [
-  {
-    title: "CV Skills",
-    skills: [
-      "JavaScript",
-      "Python",
-      "Java",
-      "SQL",
-      "API Testing",
-      "Manual Testing",
-      "Automation Testing",
-      "Katalon",
-      "Cypress",
-      "Playwright",
-      "Microsoft Office",
-      "Visual Paradigm (UML)",
-      "Postman",
-      "Teamwork/Collaboration",
-      "Effective Communication",
-    ],
-  },
+// Pre-calculate skill arrays outside component to eliminate repeated flatMap/slice operations on every render
+const ALL_SKILLS = [
+  "JavaScript",
+  "Python",
+  "Java",
+  "SQL",
+  "API Testing",
+  "Manual Testing",
+  "Automation Testing",
+  "Katalon",
+  "Cypress",
+  "Playwright",
+  "Microsoft Office",
+  "Visual Paradigm (UML)",
+  "Postman",
+  "Teamwork/Collaboration",
+  "Effective Communication",
 ]
 
+const THIRD = Math.ceil(ALL_SKILLS.length / 3)
+const TWO_THIRDS = Math.ceil(ALL_SKILLS.length * 2 / 3)
+
+const firstThirdSkills = ALL_SKILLS.slice(0, THIRD)
+const secondThirdSkills = ALL_SKILLS.slice(THIRD, TWO_THIRDS)
+const thirdThirdSkills = ALL_SKILLS.slice(TWO_THIRDS)
+
+// Hoist experience data outside component
 const experience = [
   {
     title: "QA Engineer @Paper.ID",
@@ -64,12 +59,38 @@ const experience = [
   },
 ]
 
+// Hoist education data outside component
 const education = [
   {
     degree: " Bachelor of Information Systems",
     school: "Bina Nusantara University",
     year: "2021 - 2025",
     gpa: "GPA: 3.67 / 4.00",
+  },
+]
+
+const skillIconMap: Record<string, React.ReactNode> = {
+  "JavaScript": <SiJavascript className="text-yellow-500" />,
+  "Python": <SiPython className="text-blue-500" />,
+  "Java": <FaJava className="text-red-500" />,
+  "Microsoft Office": <BsMicrosoft className="text-green-600" />,
+  "Visual Paradigm (UML)": <SiVsco className="text-violet-500" />,
+  "Postman": <SiPostman className="text-orange-500" />,
+  "SQL": <CircleStackIcon className="h-5 w-5 text-blue-700 dark:text-blue-400" />,
+  "API Testing": <LinkIcon className="h-5 w-5 text-pink-500" />,
+  "Manual Testing": <ClipboardDocumentCheckIcon className="h-5 w-5 text-purple-500" />,
+  "Automation Testing": <MdOutlineSmartToy className="text-amber-500" />,
+  "Katalon": <TbTestPipe className="text-green-500" />,
+  "Cypress": <SiCypress className="text-green-700 dark:text-green-400" />,
+  "Playwright": <SparklesIcon className="h-5 w-5 text-purple-700 dark:text-purple-400" />,
+  "Teamwork/Collaboration": <UserGroupIcon className="h-5 w-5 text-green-500" />,
+  "Effective Communication": <ChatBubbleLeftIcon className="h-5 w-5 text-blue-400" />,
+}
+
+const skillGroups = [
+  {
+    title: "CV Skills",
+    skills: ALL_SKILLS,
   },
 ]
 
@@ -92,7 +113,7 @@ export default function About() {
                   className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white justify-start"
                   header={
                     <div className="flex items-center gap-3">
-                      <span className="text-blue-500 text-xl">🗂️</span>
+                      <RectangleGroupIcon className="h-6 w-6 text-blue-500" />
                       <span className="font-semibold text-lg text-gray-900 dark:text-white">My Experience</span>
                     </div>
                   }
@@ -113,7 +134,7 @@ export default function About() {
                   className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-900 dark:text-white col-span-2"
                   header={
                     <div className="flex items-center gap-3">
-                      <span className="text-blue-500 text-xl">✨</span>
+                      <SparklesIcon className="h-6 w-6 text-blue-500" />
                       <span className="font-semibold text-lg text-gray-900 dark:text-white">My Skill</span>
                     </div>
                   }
@@ -121,7 +142,7 @@ export default function About() {
                     <div className="flex flex-col gap-5 mt-2 max-h-32 overflow-hidden">
                       <div className="flex gap-3 overflow-hidden">
                         <div className="flex gap-3 animate-scroll-left">
-                          {skillGroups.flatMap(group => group.skills).slice(0, Math.ceil(skillGroups.flatMap(group => group.skills).length / 3)).map((skill, i) => (
+                          {firstThirdSkills.map((skill, i) => (
                             <span
                               key={i}
                               className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-gray-900 dark:text-blue-100 font-semibold rounded-full px-5 py-1.5 text-sm shadow hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-150 whitespace-nowrap border border-blue-200 dark:border-blue-800 flex-shrink-0"
@@ -131,7 +152,7 @@ export default function About() {
                             </span>
                           ))}
                           {/* Duplicate for seamless loop */}
-                          {skillGroups.flatMap(group => group.skills).slice(0, Math.ceil(skillGroups.flatMap(group => group.skills).length / 3)).map((skill, i) => (
+                          {firstThirdSkills.map((skill, i) => (
                             <span
                               key={`duplicate-${i}`}
                               className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-gray-900 dark:text-blue-100 font-semibold rounded-full px-5 py-1.5 text-sm shadow hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-150 whitespace-nowrap border border-blue-200 dark:border-blue-800 flex-shrink-0"
@@ -143,13 +164,13 @@ export default function About() {
                         </div>
                       </div>
                       <div className="flex gap-3 overflow-hidden">
-                        <div 
+                        <div
                           className="flex gap-3 animate-scroll-left"
                           style={{ animationDelay: '-7s' }}
                         >
-                          {skillGroups.flatMap(group => group.skills).slice(Math.ceil(skillGroups.flatMap(group => group.skills).length / 3), Math.ceil(skillGroups.flatMap(group => group.skills).length * 2 / 3)).map((skill, i) => (
+                          {secondThirdSkills.map((skill, i) => (
                             <span
-                              key={i + Math.ceil(skillGroups.flatMap(group => group.skills).length / 3)}
+                              key={i + THIRD}
                               className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-gray-900 dark:text-blue-100 font-semibold rounded-full px-5 py-1.5 text-sm shadow hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-150 whitespace-nowrap border border-blue-200 dark:border-blue-800 flex-shrink-0"
                             >
                               {skillIconMap[skill] && <span className="text-lg">{skillIconMap[skill]}</span>}
@@ -157,7 +178,7 @@ export default function About() {
                             </span>
                           ))}
                           {/* Duplicate for seamless loop */}
-                          {skillGroups.flatMap(group => group.skills).slice(Math.ceil(skillGroups.flatMap(group => group.skills).length / 3), Math.ceil(skillGroups.flatMap(group => group.skills).length * 2 / 3)).map((skill, i) => (
+                          {secondThirdSkills.map((skill, i) => (
                             <span
                               key={`duplicate-second-${i}`}
                               className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-gray-900 dark:text-blue-100 font-semibold rounded-full px-5 py-1.5 text-sm shadow hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-150 whitespace-nowrap border border-blue-200 dark:border-blue-800 flex-shrink-0"
@@ -169,13 +190,13 @@ export default function About() {
                         </div>
                       </div>
                       <div className="flex gap-3 overflow-hidden">
-                        <div 
+                        <div
                           className="flex gap-3 animate-scroll-left"
                           style={{ animationDelay: '-14s' }}
                         >
-                          {skillGroups.flatMap(group => group.skills).slice(Math.ceil(skillGroups.flatMap(group => group.skills).length * 2 / 3)).map((skill, i) => (
+                          {thirdThirdSkills.map((skill, i) => (
                             <span
-                              key={i + Math.ceil(skillGroups.flatMap(group => group.skills).length * 2 / 3)}
+                              key={i + TWO_THIRDS}
                               className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-gray-900 dark:text-blue-100 font-semibold rounded-full px-5 py-1.5 text-sm shadow hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-150 whitespace-nowrap border border-blue-200 dark:border-blue-800 flex-shrink-0"
                             >
                               {skillIconMap[skill] && <span className="text-lg">{skillIconMap[skill]}</span>}
@@ -183,7 +204,7 @@ export default function About() {
                             </span>
                           ))}
                           {/* Duplicate for seamless loop */}
-                          {skillGroups.flatMap(group => group.skills).slice(Math.ceil(skillGroups.flatMap(group => group.skills).length * 2 / 3)).map((skill, i) => (
+                          {thirdThirdSkills.map((skill, i) => (
                             <span
                               key={`duplicate-third-${i}`}
                               className="inline-flex items-center gap-2 bg-blue-50 dark:bg-blue-900/30 text-gray-900 dark:text-blue-100 font-semibold rounded-full px-5 py-1.5 text-sm shadow hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-all duration-150 whitespace-nowrap border border-blue-200 dark:border-blue-800 flex-shrink-0"
