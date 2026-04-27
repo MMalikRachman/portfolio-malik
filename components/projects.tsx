@@ -20,60 +20,12 @@ interface UICard {
 // Hoist webProjects data outside component
 const webProjects = [
   {
-    title: "KlinikKasih",
+    title: "PlusWerk",
     description:
-      "A comprehensive clinic platform where users can explore health articles and purchase clinic products. Features include article browsing, product catalog, and e-commerce functionality.",
-    type: "Web Platform",
-    technologies: ["HTML", "CSS", "JavaScript"],
-    link: "https://mmalikrachman.github.io/webklinikkasih/index.html",
-  },
-  {
-    title: "PusBaKas",
-    description:
-      "A discount tracking website that displays current product discounts with a comprehensive table showing all discounted products from the market.",
-    type: "Web Application",
-    technologies: ["Web Development", "Database"],
-    link: "https://mmalikrachman.github.io/webjualbelibarang/index.html",
-  },
-  {
-    title: "Ticks",
-    description:
-      "A concert ticket purchasing platform where users can buy concert tickets, merchandise, and other event-related products.",
-    type: "E-commerce Web",
-    technologies: ["Web Development", "Payment Integration"],
-    link: "https://mmalikrachman.github.io/webkonser/",
-  },
-  {
-    title: "E-Pasar",
-    description:
-      "Built using Wix Web Builder, this platform serves as a marketplace for buying and selling raw foods such as vegetables and meats.",
-    type: "Marketplace",
-    technologies: ["Wix", "E-commerce"],
-    link: "https://malikrachman1403.wixsite.com/e-pasar",
-  },
-  {
-    title: "DevlopWeb",
-    description:
-      "A professional web developer agency portfolio showcasing services, expertise, and past projects for clients looking to build their online presence.",
-    type: "Agency Portfolio",
-    technologies: ["Web Development", "Agency"],
-    link: "https://devlopweb.com",
-  },
-  {
-    title: "Arus Office",
-    description:
-      "A company profile website for business entity consultation services, helping clients establish and manage their legal business structures.",
+      "A modern furniture company website showcasing stainless steel niche products, specializing in contemporary furniture design and manufacturing in Indonesia.",
     type: "Company Profile",
-    technologies: ["Web Development", "Company Profile"],
-    link: "https://arusoffice.biz.id",
-  },
-  {
-    title: "Wonderful Wanita Indonesia",
-    description:
-      "A foundation website dedicated to empowering women through various activities, organized by women for women, fostering community and growth.",
-    type: "Foundation Website",
-    technologies: ["Web Development", "Community"],
-    link: "https://wonderfulwanitaindonesia.my.id",
+    technologies: ["Web Development", "Furniture"],
+    link: "https://pluswerk.id",
   },
   {
     title: "Doa Library",
@@ -84,12 +36,60 @@ const webProjects = [
     link: "https://Doalibrary.com",
   },
   {
-    title: "PlusWerk",
+    title: "Wonderful Wanita Indonesia",
     description:
-      "A modern furniture company website showcasing stainless steel niche products, specializing in contemporary furniture design and manufacturing in Indonesia.",
+      "A foundation website dedicated to empowering women through various activities, organized by women for women, fostering community and growth.",
+    type: "Foundation Website",
+    technologies: ["Web Development", "Community"],
+    link: "https://wonderfulwanitaindonesia.my.id",
+  },
+  {
+    title: "Arus Office",
+    description:
+      "A company profile website for business entity consultation services, helping clients establish and manage their legal business structures.",
     type: "Company Profile",
-    technologies: ["Web Development", "Furniture"],
-    link: "https://pluswerk.id",
+    technologies: ["Web Development", "Company Profile"],
+    link: "https://arusoffice.biz.id",
+  },
+  {
+    title: "DevlopWeb",
+    description:
+      "A professional web developer agency portfolio showcasing services, expertise, and past projects for clients looking to build their online presence.",
+    type: "Agency Portfolio",
+    technologies: ["Web Development", "Agency"],
+    link: "https://devlopweb.com",
+  },
+  {
+    title: "E-Pasar",
+    description:
+      "Built using Wix Web Builder, this platform serves as a marketplace for buying and selling raw foods such as vegetables and meats.",
+    type: "Marketplace",
+    technologies: ["Wix", "E-commerce"],
+    link: "https://malikrachman1403.wixsite.com/e-pasar",
+  },
+  {
+    title: "Ticks",
+    description:
+      "A concert ticket purchasing platform where users can buy concert tickets, merchandise, and other event-related products.",
+    type: "E-commerce Web",
+    technologies: ["Web Development", "Payment Integration"],
+    link: "https://mmalikrachman.github.io/webkonser/",
+  },
+  {
+    title: "PusBaKas",
+    description:
+      "A discount tracking website that displays current product discounts with a comprehensive table showing all discounted products from the market.",
+    type: "Web Application",
+    technologies: ["Web Development", "Database"],
+    link: "https://mmalikrachman.github.io/webjualbelibarang/index.html",
+  },
+  {
+    title: "KlinikKasih",
+    description:
+      "A comprehensive clinic platform where users can explore health articles and purchase clinic products. Features include article browsing, product catalog, and e-commerce functionality.",
+    type: "Web Platform",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    link: "https://mmalikrachman.github.io/webklinikkasih/index.html",
   },
   
 ]
