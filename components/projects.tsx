@@ -51,6 +51,47 @@ const webProjects = [
     technologies: ["Wix", "E-commerce"],
     link: "https://malikrachman1403.wixsite.com/e-pasar",
   },
+  {
+    title: "DevlopWeb",
+    description:
+      "A professional web developer agency portfolio showcasing services, expertise, and past projects for clients looking to build their online presence.",
+    type: "Agency Portfolio",
+    technologies: ["Web Development", "Agency"],
+    link: "https://devlopweb.com",
+  },
+  {
+    title: "Arus Office",
+    description:
+      "A company profile website for business entity consultation services, helping clients establish and manage their legal business structures.",
+    type: "Company Profile",
+    technologies: ["Web Development", "Company Profile"],
+    link: "https://arusoffice.biz.id",
+  },
+  {
+    title: "Wonderful Wanita Indonesia",
+    description:
+      "A foundation website dedicated to empowering women through various activities, organized by women for women, fostering community and growth.",
+    type: "Foundation Website",
+    technologies: ["Web Development", "Community"],
+    link: "https://wonderfulwanitaindonesia.my.id",
+  },
+  {
+    title: "Doa Library",
+    description:
+      "A volunteer-built website containing a collection of prayers (doa) created for the Ramadan month, making spiritual resources accessible to all.",
+    type: "Volunteer Project",
+    technologies: ["Web Development", "Religious"],
+    link: "https://Doalibrary.com",
+  },
+  {
+    title: "PlusWerk",
+    description:
+      "A modern furniture company website showcasing stainless steel niche products, specializing in contemporary furniture design and manufacturing in Indonesia.",
+    type: "Company Profile",
+    technologies: ["Web Development", "Furniture"],
+    link: "https://pluswerk.id",
+  },
+  
 ]
 
 // Hoist uiProjects data outside component
